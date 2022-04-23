@@ -18,10 +18,8 @@ Ensure you have the following gems in your Rails `Gemfile`
 # Gemfile
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
-gem 'simple_form', github: 'heartcombo/simple_form'
+gem 'simple_form'
 ```
-
-⚠ To this day (March, 9th, 2022), Simple Form support of Bootstrap 5 has been merged in `main` but has not been released yet. To use a version of Simple Form which supports Bootstrap 5, we need to install the gem from GitHub and we've added the specific `components/_form_legend_clear.scss` partial in our stylesheets.
 
 In your terminal, generate SimpleForm Bootstrap config.
 
@@ -32,15 +30,13 @@ rails generate simple_form:install --bootstrap
 
 Then replace Rails' stylesheets by Le Wagon's stylesheets:
 
-```bash
+```
 rm -rf app/assets/stylesheets
 curl -L https://github.com/lewagon/stylesheets/archive/master.zip > stylesheets.zip
 unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/rails-stylesheets-master app/assets/stylesheets
 ```
 
 **On Ubuntu/Windows**: if the `unzip` command returns an error, please install it first by running `sudo apt install unzip`.
-
-Note that when you update the colors in `config/colors`, the (text) color of your buttons might change from white to black. This is done automatically by Bootstrap using the [WCAG 2.0 algorithm](https://getbootstrap.com/docs/5.1/customize/sass/#color-contrast) which makes sure that the contrast between the text and the background color meets accessibility standards.
 
 
 ## Bootstrap JS
@@ -66,6 +62,7 @@ Look at your main `application.scss` file to see how SCSS files are imported. Th
 
 // External libraries
 @import "bootstrap/scss/bootstrap"; // from the node_modules
+@import "font-awesome-sprockets";
 @import "font-awesome";
 
 // Your CSS partials
